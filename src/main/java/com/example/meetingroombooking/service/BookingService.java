@@ -96,4 +96,8 @@ public class BookingService {
                         || booking.getFourSeater() == roomType)
                 .collect(Collectors.toList());
     }
+
+    public List<Booking> findByBookingDateAndTimeRange(LocalDate bookingDate, LocalDateTime startTime, LocalDateTime endTime) {
+        return bookingRepository.findByBookingDateAndTimeRange(bookingDate, startTime, endTime);
+    }
 }

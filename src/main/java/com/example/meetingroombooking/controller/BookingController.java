@@ -98,5 +98,11 @@ public class BookingController {
         return new ResponseEntity<>(bookingsByRoomType, HttpStatus.OK);
     }
 
+    @GetMapping("/bookings")
+    public List<Booking> getBookings(@RequestParam LocalDate bookingDate,
+                                     @RequestParam LocalDateTime startTime,
+                                     @RequestParam LocalDateTime endTime) {
+        return bookingService.findByBookingDateAndTimeRange(bookingDate, startTime, endTime);
+    }
 
 }

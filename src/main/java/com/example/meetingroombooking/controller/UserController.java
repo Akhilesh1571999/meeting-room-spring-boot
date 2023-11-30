@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -62,7 +63,17 @@ public class UserController {
 //        }
 //    }
 
-    @PostMapping
+    @GetMapping
+    public String welcome() {
+        return "Welcome to Google !!";
+    }
+    @GetMapping("/users")
+    public Principal user(Principal principal) {
+        System.out.println("username : " + principal.getName());
+        return principal;
+    }
+
+    @PostMapping("/save")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         userService.saveUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
